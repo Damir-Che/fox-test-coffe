@@ -3,13 +3,15 @@
 <h1>Posts</h1>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-      <br>
-      <%= button_to "Отправить сообщение через контроллер", post_massages_telegram_path %>
-    </p>
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <%= render post %>
+      <p>
+        <%= link_to "Show this post", post %>
+        <br>
+        <%= button_to "Отправить сообщение через контроллер", post_massages_telegram_path %>
+      </p>
+    <% end %>
   <% end %>
 </div>
 
