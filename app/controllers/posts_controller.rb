@@ -2,13 +2,10 @@ class PostsController < ApplicationController
 
   before_action :set_post, only: %i[ show edit update destroy ]
 
-  def massages_telegram
-    # api_key = '5356889131:AAEY-Esd6c2u6kK8Z8iq_jTL0PehQ3BWI1w'
-    # chat_id = 1424694609
-    # text = 'hello'
-    # response = HTTP.post("https://api.telegram.org/bot#{api_key}/sendMessage?chat_id=#{chat_id}&text=#{text}")
-    #
-    # redirect_to posts_path, notice: 'success'
+  def enter_message
+    text = params[:massage]
+    TelegramMailer.send_massage(text).deliver_now
+    redirect_to posts_path, notice: 'success'
   end
 
   # GET /posts or /posts.json
