@@ -52,6 +52,7 @@ Rails.application.configure do
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
 
+  routes.default_url_options = {host: 'https://fox-coffe.herokuapp.com', protocol: 'https'}
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
