@@ -8,6 +8,7 @@ class TelegramWebhookController < Telegram::Bot::UpdatesController
     # message can be also accessed via instance method
     message == self.payload # true
     Rails.logger.info("--------message #{message}")
+    Messages::CreateService.call(chat: chat, text: message['text'])
     # store_message(message['text'])
   end
 
@@ -20,6 +21,7 @@ class TelegramWebhookController < Telegram::Bot::UpdatesController
 
   def start!(data = nil, *)
     Rails.logger.info("-----------start #{data}")
+    TelegramUsers::CreateService.call(chat: chat)
     # `reply_with` also sets `reply_to_message_id`:
     # reply_with :photo, photo: File.open('party.jpg')
   end
