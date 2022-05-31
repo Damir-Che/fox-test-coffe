@@ -3,18 +3,20 @@
 <h1>Posts</h1>
 
 <div id="posts">
+
   <%= form_tag enter_message_path, method: :post, authenticity_token: false do %>
+    <%= select_tag :tg_chat_id, options_for_select( TelegramUser.all.collect { |p| [ p.first_name, p.tg_chat_id ] } ) %>
     <%= text_field_tag :massage %>
     <%= submit_tag 'Отправить' %>
   <% end %>
+
   <% if @posts.present? %>
     <% @posts.each do |post| %>
-      <%= render post %>
       <p>
-        <%= link_to "Show this post", post %>
+        <%= post.author.first_name %>: <%= post.body %>
       </p>
     <% end %>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<%#= link_to "New post", new_post_path %>

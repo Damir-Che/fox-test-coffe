@@ -3,14 +3,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def enter_message
-    text = params[:massage]
-    TelegramMailer.send_massage(text).deliver_now
+    massage = params[:massage]
+    tg_chat_id = params[:tg_chat_id]
+    TelegramMailer.send_massage(massage, tg_chat_id).deliver_now
     redirect_to posts_path, notice: 'success'
   end
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Message.all
   end
 
   # GET /posts/1 or /posts/1.json
