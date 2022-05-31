@@ -12,9 +12,11 @@
 
   <% if @posts.present? %>
     <% @posts.each do |post| %>
-      <p>
-        <%= post.author.first_name %>: <%= post.body %>
-      </p>
+      <% if post.author.present? %>
+        <p>
+          <%= post.author.first_name %>: <%= post.body %>
+        </p>
+      <% end %>
     <% end %>
   <% end %>
 </div>
