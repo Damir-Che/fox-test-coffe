@@ -10,6 +10,7 @@ gem 'slim'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
+gem 'rubocop'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
