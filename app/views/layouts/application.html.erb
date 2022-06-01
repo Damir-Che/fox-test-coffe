@@ -12,9 +12,10 @@
   </head>
 
   <body>
-    <%= notice %>
-    <%= link_to "Чат", chat_messages_posts_path %>
-    <%= link_to "Заказы", coffee_store_posts_path %>
-    <%= yield %>
+    <div class="container">
+      <%= render "layouts/navbar" unless current_page?(coffee_store_posts_path)%>
+      <%= notice %>
+      <%= yield %>
+    </div>
   </body>
 </html>

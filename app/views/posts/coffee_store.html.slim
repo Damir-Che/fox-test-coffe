@@ -1,3 +1,10 @@
 h2 Store
+.section
+  - Product.all.each do |p|
+    .card.mb-3 style=("width: 18rem;")
+      .card-body
+        h5.card-title = icon('fa-solid', 'fas fa-coffee', class: 'fa_coffee')
+        p.card-text = p.name
+        p.card-text = "#{p.price} руб."
+        a.btn.btn-primary href="#"  Заказать
 
-= icon('fa-solid', 'fas fa-coffee', class: 'fa_coffee')

@@ -1,0 +1,10 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand href="#"  FoxCoffee
+  button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarNavDropdown.collapse.navbar-collapse
+    ul.navbar-nav
+      li.nav-item
+        = link_to "Чат", chat_messages_posts_path, class: 'nav-link'
+      li.nav-item
+        = link_to "Заказы", coffee_store_posts_path, class: 'nav-link'
