@@ -1,0 +1,12 @@
+h2 Чат
+
+= form_tag enter_message_path, method: :post, authenticity_token: false do |f|
+  = select_tag :tg_chat_id, options_for_select(TelegramUser.all.collect { |p| [ p.first_name, p.tg_chat_id ] })
+  = text_field_tag :massage
+  = submit_tag 'Отправить'
+
+- if @messages.present?
+  - @messages.each do |message|
+    - if message.author.present?
+      p
+        = "#{message.author.first_name}: #{message.body}"

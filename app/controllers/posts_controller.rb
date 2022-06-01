@@ -9,6 +9,14 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: 'success'
   end
 
+  def coffee_store
+
+  end
+
+  def chat_messages
+    @messages = Message.all
+  end
+
   # GET /posts or /posts.json
   def index
     @posts = Message.all
