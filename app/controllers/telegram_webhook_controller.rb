@@ -9,7 +9,61 @@ class TelegramWebhookController < Telegram::Bot::UpdatesController
     message == self.payload # true
     Rails.logger.info("--------message #{message}")
     Messages::CreateService.call(chat: chat, text: message['text'])
-    # store_message(message['text'])
+
+  end
+
+  def keyboard!(value = nil, *)
+    if value
+      p '-----111'
+      respond_with :message, text: "Damir - #{value}"
+    else
+      p '-----222'
+      # save_context :keyboard!
+      respond_with :message, text: 'Damir2', reply_markup: {
+        keyboard: [['Damir3']],
+        resize_keyboard: true,
+        one_time_keyboard: true,
+        selective: true,
+      }
+    end
+  end
+
+  def inline_keyboard!(*)
+    respond_with :message, text: 'Han', reply_markup: {
+      inline_keyboard: [
+        [
+          {text: 'But1', callback_data: 'alert'},
+          {text: 'But2', callback_data: 'no_alert'},
+        ],
+        [{text: 'But3', url: 'https://fox-coffe.herokuapp.com/posts/coffee_store'}],
+      ],
+    }
+  end
+
+  def callback_query(data)
+    if data == 'alert'
+      answer_callback_query 'aaaaa', show_alert: true
+    else
+      answer_callback_query 'sssss'
+    end
+  end
+
+  def inline_query(query, _offset)
+    query = query.first(10) # it's just an example, don't use large queries.
+    t_description = 'asd'
+    t_content = 'asd'
+    results = Array.new(5) do |i|
+      {
+        type: :article,
+        title: "#{query}-#{i}",
+        id: "#{query}-#{i}",
+        description: "#{t_description} #{i}",
+        input_message_content: {
+          message_text: "#{t_content} #{i}",
+        },
+      }
+    end
+    answer_inline_query results
   end
 
   # This basic methods receives commonly used params:
